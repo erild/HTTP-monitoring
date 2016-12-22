@@ -54,7 +54,7 @@ class GenerateLog:
     return self.user[randint(0, len(self.user)-1)]
 
   def generateDate(self):
-    return datetime.date.today().strftime('[%d/%b/%Y:%H:%M:%S %z]')
+    return time.strftime('[%d/%b/%Y:%H:%M:%S %z]', time.gmtime())
 
 
   def generateMethods(self):
