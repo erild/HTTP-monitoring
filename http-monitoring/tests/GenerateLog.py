@@ -56,7 +56,6 @@ class GenerateLog:
   def generateDate(self):
     return time.strftime('[%d/%b/%Y:%H:%M:%S %z]', time.gmtime())
 
-
   def generateMethods(self):
     return self.methods[randint(0, len(self.methods)-1)]
 
