@@ -23,4 +23,4 @@ class Parser:
   @staticmethod
   def parse_date(date_str):
     date_matches = re.match(Parser.DATE_PATTERN, date_str)
-    return datetime.datetime(int(date_matches.group(3)), int(Parser.MONTHS[date_matches.group(2)]), int(date_matches.group(1)), int(date_matches.group(4)), int(date_matches.group(5)), int(date_matches.group(6)))
+    return int(datetime.datetime(int(date_matches.group(3)), int(Parser.MONTHS[date_matches.group(2)]), int(date_matches.group(1)), int(date_matches.group(4)), int(date_matches.group(5)), int(date_matches.group(6))).timestamp())
