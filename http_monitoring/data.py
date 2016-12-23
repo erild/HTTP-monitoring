@@ -10,7 +10,7 @@ class Data:
 
   def update_10s(self, log_data):
     self.path_10s[log_data['path']] = self.path_10s[log_data['path']] + 1 if log_data['path'] in self.path_10s else 1
-    self.ips_10s[log_data['host']] = self.ips_10s[log_data['host']] + 1 if log_data['host'] in self.path_10s else 1
+    self.ips_10s[log_data['host']] = self.ips_10s[log_data['host']] + 1 if log_data['host'] in self.ips_10s else 1
     self.traffic_10s += log_data['bytes']
 
   def clean_10s(self):
@@ -35,3 +35,6 @@ class Data:
 
   def get_10s_data(self):
     return {'path': self.path_10s, 'traffic': self.traffic_10s, 'ips': self.ips_10s}
+
+  def get_2m_hits(self):
+    return self.hits_2min
