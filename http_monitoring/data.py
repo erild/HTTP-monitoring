@@ -24,12 +24,11 @@ class Data:
 
   def clean_2min(self,last_date):
     for time_2m in list(self.times_2min.keys()):
-      if time_2m - 120 >= last_date:
+      if time_2m + 120 <= last_date:
         self.hits_2min -= self.times_2min[time_2m]
         self.times_2min.pop(time_2m)
 
   def insert_data(self, log_data):
-    self.clean_2min(log_data['date'])
     self.update_10s(log_data)
     self.update_2min(log_data)
 
