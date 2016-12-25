@@ -35,13 +35,13 @@ class Reporting:
     alert_result = self.alert.process(hits_2m)
     if alert_result['status'] == 'Start':
       self.alert_current = {'start': datetime.datetime.now().strftime('%d/%b/%Y:%H:%M:%S'), 'hits': hits_2m}
-      print("High traffic generated an alert: {0} hits triggered at {1}\n".format(hits_2m, self.alert_current['start']))
+      print("\033[93m High traffic generated an alert: {0} hits triggered at {1} \033[0m\n".format(hits_2m, self.alert_current['start']))
     elif alert_result['status'] == 'Continue':
       self.alert_current['hits'] = hits_2m if self.alert_current['hits'] < hits_2m else self.alert_current['hits']
       # report += "High traffic generated an alert: maximum of {0} hits triggered at {1}\n".format(self.alert_current['hits'], self.alert_current['start'])
     elif alert_result['status'] == 'Stop':
       self.alert_current['stop'] = datetime.datetime.now().strftime('%d/%b/%Y:%H:%M:%S')
-      print("Recover from high traffic: {0} max hits started on {1}, finished on {2}\n".format(self.alert_current['hits'], self.alert_current['start'], self.alert_current['stop']))
+      print("\033[92m Recover from high traffic: {0} max hits started on {1}, finished on {2} \033[0m\n".format(self.alert_current['hits'], self.alert_current['start'], self.alert_current['stop']))
       self.alert_history.append(self.alert_current)
       self.alert_current = {}
 
@@ -53,6 +53,6 @@ class Reporting:
         report += "  From {0} to {1}, alert due to traffic reaching {2}\n\n".format(alert['start'], alert['stop'], alert['hits'])
 
     if self.alert_current:
-      report += "High traffic generated an alert: maximum of {0} hits triggered at {1}\n".format(self.alert_current['hits'], self.alert_current['start'])
+      report += "\033[93m High traffic generated an alert: maximum of {0} hits triggered at {1} \033[0m\n".format(self.alert_current['hits'], self.alert_current['start'])
 
     print(report)
