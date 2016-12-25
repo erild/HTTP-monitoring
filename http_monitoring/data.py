@@ -1,5 +1,5 @@
 import datetime
-
+# Handle storage of data for reporting and alerting
 class Data:
   def __init__(self):
     self.path_10s = {}

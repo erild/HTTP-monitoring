@@ -1,5 +1,5 @@
 
-
+# Process the alert state
 class Alert:
   def __init__(self, threshold):
     self.threshold = threshold
