@@ -1,11 +1,8 @@
 from .parser import Parser
-
+# Read data from a w3c-compliant log
 class Reader:
   def __init__(self, file):
-    try:
-      self.fileHandle = open(file, 'r')
-    except IOError:
-      print("Could not open file!")
+    self.fileHandle = open(file, 'r')
     self.fileHandle.seek(0, 2)
 
   def getData(self):

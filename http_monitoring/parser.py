@@ -1,10 +1,10 @@
 import re
 import datetime
-
+# Parse data from w3c line
 class Parser:
   # Host User Name Date Req_type path protocol Status Size
   W3C_PATTERN = '^(.+)\s(.+)\s(.+)\s\[(.+)\]\s"(\w+)\s(/[^/]*).*\s(.+)"\s(\d+)\s(\d+|-)$'
-  DATE_PATTERN = '^(\d+)/(\w+)/(\d+):(\d+):(\d+):(\d+) (.....)?$'
+  DATE_PATTERN = '^(\d+)/(\w+)/(\d+):(\d+):(\d+):(\d+)\s?(.....)?$'
 
   MONTHS = {'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6, 'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12}
 
@@ -12,6 +12,8 @@ class Parser:
   @staticmethod
   def parse_w3c(line):
     matches = re.match(Parser.W3C_PATTERN, line)
+    if not matches:
+      raise Exception(datetime.datetime.now().strftime('%d/%b/%Y:%H:%M:%S'), 'Error parsing the w3c line')
     result = {}
     result['host'] = matches.group(1)
     result['user'] = matches.group(2)
