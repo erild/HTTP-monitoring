@@ -33,6 +33,8 @@ class Cli:
       if(int(datetime.datetime.now().timestamp()) >= report_time):
         self.reporter.report(self.data)
         self.data.clean_10s()
-        self.data.clean_2min(report_time)
         report_time +=10
+      # print alert
+      self.reporter.print_alert(self.data)
+      self.data.clean_2min(report_time)
       time.sleep(1)
