@@ -8,11 +8,11 @@ class Reporting:
     self.alert = Alert(threshold)
 
   def report(self, data):
-    self.print_report(data)
-    self.print_alert_history()
-    self.print_alert(data)
+    self.printReport(data)
+    self.printAlertHistory()
+    self.printAlert(data)
 
-  def print_report(self, data):
+  def printReport(self, data):
     report = "---------------------------------\n"
     report += "Report at {0}\n".format(datetime.datetime.now().strftime('[%d/%b/%Y:%H:%M:%S %z]'))
     report_10s = data.get_10s_data()
@@ -30,7 +30,7 @@ class Reporting:
       report += "Nothing happened\n"
     print(report)
 
-  def print_alert(self,data):
+  def printAlert(self,data):
     hits_2m = data.get_2m_hits()
     alert_result = self.alert.process(hits_2m)
     if alert_result['status'] == 'Start':
@@ -45,7 +45,7 @@ class Reporting:
       self.alert_history.append(self.alert_current)
       self.alert_current = {}
 
-  def print_alert_history(self):
+  def printAlertHistory(self):
     report = ""
     if self.alert_history:
       report += "Past Alert:\n"

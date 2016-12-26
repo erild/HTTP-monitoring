@@ -6,12 +6,12 @@ import sys, argparse
 
 # launch the event loop and the programm
 class Cli:
-  def __init__(self, argv):
+  def __init__(self, sysArg):
     # Get command line argument
     parser = argparse.ArgumentParser(description='Display monitoring alert for web traffic')
     parser.add_argument("-i", dest="logfile", required=True,)
     parser.add_argument("-l", dest="limit", required=True, type=int)
-    args = parser.parse_args()
+    args = parser.parse_args(sysArg)
 
     try:
       self.reader = Reader(args.logfile)
@@ -22,6 +22,7 @@ class Cli:
     self.data = Data()
 
   def run(self):
+    print("\nStarting monitoring of traffic from log file\n")
     report_time = int(datetime.datetime.now().timestamp()) + 10
     while True:
       try:
@@ -35,6 +36,6 @@ class Cli:
         self.data.clean_10s()
         report_time +=10
       # print alert
-      self.reporter.print_alert(self.data)
+      self.reporter.printAlert(self.data)
       self.data.clean_2min(report_time)
       time.sleep(1)

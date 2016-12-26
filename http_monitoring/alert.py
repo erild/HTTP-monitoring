@@ -12,7 +12,7 @@ class Alert:
         return self.stopAlarm(hits)
       return self.continueAlarm(hits)
     else:
-      if hits > self.threshold:
+      if hits >= self.threshold:
         self.status = True
         return self.triggerAlarm(hits)
       return {'status': 'None'}

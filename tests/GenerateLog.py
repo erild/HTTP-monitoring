@@ -23,13 +23,13 @@ class GenerateLog:
   def __del__(self):
     self.logfileHandle.close()
 
-  def run(self, duration):
+  def run(self, duration, density=1):
     start = time.time()
     while start + duration > time.time():
-      self.logfileHandle.write(self.generateLine())
-      self.logfileHandle.flush()
+      for i in range(density):
+        self.logfileHandle.write(self.generateLine())
+        self.logfileHandle.flush()
       time.sleep(1)
-
 
   def generateLine(self):
     return "{0} {1} {2} {3} \"{4} {5} {6}\" {7} {8}\n".format(
