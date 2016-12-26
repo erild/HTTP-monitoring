@@ -4,6 +4,7 @@ from context import http_monitoring
 import sys
 import _thread
 
+# Class to run a alert scenario
 class TestScenario:
   def __init__(self):
     if TestParser.testParse():
@@ -17,9 +18,11 @@ class TestScenario:
 
   def runAlertScenario(self):
     try:
+      # launch the log writing
       _thread.start_new_thread( self.runLogGeneratorForAlert, ())
     except Exception as e:
       print("Cannot start thread")
+    # launch the reporter
     self.cli.run()
 
   def runLogGeneratorForAlert(self):
