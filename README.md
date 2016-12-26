@@ -12,6 +12,7 @@ Just clone the repository and verify you have python3 installed
 
 #Compatibility
 Tested on Linux: debian 7 and archlinux
+
 Not tested on Windows but should work 
 
 #Usage
